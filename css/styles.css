@@ -48,8 +48,10 @@ p{
 
 /* Sections */
 
-.colored-section{
-    background-color: #ff4c68;
+.colored-section {
+    background-image: url('../images/couple.jpg');
+    background-size: cover; /* لتغطية المساحة بالكامل */
+    background-position: center; /* لتوسيع الصورة في المنتصف */
     color: #FFF;
 }
 
