@@ -48,13 +48,9 @@ p{
 
 /* Sections */
 
-.colored-section {
-    background-image: url('../images/0.jpg'), url('../images/multixnxx-Pictures\ I\ like!!\ Part\ 2\ -\ Started\ July\ 20-13.jpg'), url('image3.jpg'), url('image4.jpg');
-    background-size: cover; /* لتغطية المساحة بالكامل */
-    background-position: center; /* لتوسيع الصورة في المنتصف */
+.colored-section{
+    background-color: #ff4c68;
     color: #FFF;
-    display: grid;
-    display: flex;
 }
 
 
