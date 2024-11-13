@@ -49,7 +49,7 @@ p{
 /* Sections */
 
 .colored-section {
-    background-image: url('../images/couple.jpg');
+    background-color: yellow;
     background-size: cover; /* لتغطية المساحة بالكامل */
     background-position: center; /* لتوسيع الصورة في المنتصف */
     color: #e40808;
